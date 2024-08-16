@@ -7,17 +7,28 @@ output:
     theme: paper
     toc: true
 ---
+Note: For demonstration purposes I am using the a package with 19 medical datasets for teaching reproducible medical research with R. The package is called "medicaldata" and needs to be installed if you would like to reproduce the results shown in this document in your R-script.
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
+library(medicaldata)
+streptomycin <- strep_tb
+```
+
+
+## Install ggstatsplot
+If not done already install the package called ggstatsplot. For this copy the code down below into the console and press enter. You might need to install other packages as well. Do this in the same fashion using the install.packages() function.
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+cat("install.packages(\"ggstatsplot\")")
+```
 
 ## Load the required R libraries
 There are many nice libraries that support statistics in R. I recommend the following:
 
-```{r}
-
+```{r message=FALSE, warning=FALSE}
+library(ggstatsplot)
 ```
 
 In addition to that, we want to load, manipulate and visualize our data from excel:
-
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(readxl)
 library(openxlsx)
 library(dplyr)
@@ -27,5 +38,23 @@ library(ggpubr)
 ```
 
 ## Choosing the right statistical method
+### Data preparation
+The first step is to identify whether your data is categorical or continuous. This will influence your choice of statistical methods. 
+
+* Categorical data: Data that represent categories (e.g., gender, color).
+* Continuous data: Data that represent measurements on a continuous scale (e.g., height, weight).
+    
+Furthermore, you should check for outliers and missing data and decide how you want to handle these. 
+
+### Testing assumptions
+Two common assumptions are normality and homogeneity of variances. The following section demonstrates how to do this in R.
+
+#### Tests for normality
+
+*Shapiro-Wilk Test: A formal test for normality.
+
+
+Q-Q Plot: A visual method to check if your data follow a normal distribution
+### Decision tree
 
 ![](https://www.methodenberatung.uzh.ch/static/entscheidbaum/entscheidbaum.jpg)
