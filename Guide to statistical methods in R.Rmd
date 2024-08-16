@@ -1,0 +1,31 @@
+---
+title: "Guide to statistical methods in R"
+author: "Pauline Busch"
+date: "2024-08-16"
+output: 
+  html_document:
+    theme: paper
+    toc: true
+---
+
+## Load the required R libraries
+There are many nice libraries that support statistics in R. I recommend the following:
+
+```{r}
+
+```
+
+In addition to that, we want to load, manipulate and visualize our data from excel:
+
+```{r}
+library(readxl)
+library(openxlsx)
+library(dplyr)
+library(ggplot2)
+library(ggthemes)
+library(ggpubr)
+```
+
+## Choosing the right statistical method
+
+![](https://www.methodenberatung.uzh.ch/static/entscheidbaum/entscheidbaum.jpg)
