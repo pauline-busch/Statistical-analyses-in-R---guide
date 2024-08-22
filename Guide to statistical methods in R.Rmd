@@ -10,7 +10,7 @@ output:
 Note: For demonstration purposes I am using the a package with 19 medical datasets for teaching reproducible medical research with R. The package is called "medicaldata" and needs to be installed if you would like to reproduce the results shown in this document in your R-script.
 ```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
 library(medicaldata)
-streptomycin <- strep_tb
+blood <- blood_storage
 ```
 
 
@@ -51,10 +51,36 @@ Two common assumptions are normality and homogeneity of variances. The following
 
 #### Tests for normality
 
-*Shapiro-Wilk Test: A formal test for normality.
+* **Shapiro-Wilk Test:** A formal test for normality.  
+Let's test whether our data is normally distributed. The following code shows an example on how to conduct a Shapiro-Wilk Test on the previously loaded "medicaldata". For comprehension: We want to understand whether RBC storage duration and biochemical prostate cancer recurrence after radical prostatectomy are associated. RBC age is categorized in three groups (1-3) from "younger" to "older" depending on storage time (see: RBC.Age.Group). Cancer recurrence can be found in the last column (TimeToRecurrence).
+
+```{r message=FALSE, warning=FALSE}
+grouped_data <- split(blood$TimeToRecurrence, blood$RBC.Age.Group) #data preparation
+shapiro_results <- lapply(grouped_data, shapiro.test) #lapply() applies the shapiro-function to all groups
+
+#shapiro_results <- shapiro.test(grouped_data[["1"]])
+```
+
+* **Q-Q Plot:** A visual method to check if your data follow a normal 
+
+```{r}
+geom_qq_line(
+  mapping = NULL,
+  data = NULL,
+  geom = "path",
+  position = "identity",
+  ...,
+  distribution = stats::qnorm,
+  dparams = list(),
+  line.p = c(0.25, 0.75),
+  fullrange = FALSE,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
+```
 
 
-Q-Q Plot: A visual method to check if your data follow a normal distribution
 ### Decision tree
 
 ![](https://www.methodenberatung.uzh.ch/static/entscheidbaum/entscheidbaum.jpg)
