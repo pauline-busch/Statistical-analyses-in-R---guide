@@ -58,26 +58,15 @@ Let's test whether our data is normally distributed. The following code shows an
 grouped_data <- split(blood$TimeToRecurrence, blood$RBC.Age.Group) #data preparation
 shapiro_results <- lapply(grouped_data, shapiro.test) #lapply() applies the shapiro-function to all groups
 
-#shapiro_results <- shapiro.test(grouped_data[["1"]])
+# without lappy() its more complicated: shapiro_results <- shapiro.test(grouped_data[["1"]])
 ```
 
 * **Q-Q Plot:** A visual method to check if your data follow a normal 
 
 ```{r}
-geom_qq_line(
-  mapping = NULL,
-  data = NULL,
-  geom = "path",
-  position = "identity",
-  ...,
-  distribution = stats::qnorm,
-  dparams = list(),
-  line.p = c(0.25, 0.75),
-  fullrange = FALSE,
-  na.rm = FALSE,
-  show.legend = NA,
-  inherit.aes = TRUE
-)
+ggplot(data = blood, aes(sample = TimeToRecurrence)) +
+  stat_qq() +
+  stat_qq_line()
 ```
 
 
