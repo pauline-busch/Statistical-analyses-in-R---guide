@@ -7,7 +7,7 @@ output:
     theme: paper
     toc: true
 ---
-Note: For demonstration purposes I am using the a package with 19 medical datasets for teaching reproducible medical research with R. The package is called "medicaldata" and needs to be installed if you would like to reproduce the results shown in this document in your R-script.
+Note: For demonstration purposes I am using different datasets provided by R. One of the datasets is not included in base R and is from a package with 19 medical datasets for teaching reproducible medical research with R. The package is called "medicaldata" and needs to be installed if you would like to reproduce the results shown in this document in your R-script.
 ```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=FALSE}
 library(medicaldata)
 blood <- blood_storage
@@ -120,7 +120,30 @@ Once you've checked the assumptions, the next step is to choose the appropriate 
 ![](https://www.methodenberatung.uzh.ch/static/entscheidbaum/entscheidbaum.jpg)
 
 ## Statistical methods
+### Student's t-Test 
+**Unpaired t-test** (weight of soybean fed chicken vs. meatmeal fed chicken)
+```{r message=FALSE, warning=FALSE}
+chicken <- chickwts
+grouped_ch <- split(chicken$weight, chicken$feed)
+T.test_unpaired <- t.test(grouped_ch[["meatmeal"]], grouped_ch[["soybean"]])
+```
+
+**Paired t-test** (sleep debt of 10 individuals with vs. without drug)
+```{r}
+sleep_ID <- reshape(sleep, direction = "wide", idvar = "ID", timevar = "group")
+T.Test_paired <- t.test(sleep_ID$extra.1, sleep_ID$extra.2, paired = TRUE)
+```
+
+### Mann-Whitney-U test
+### Wilcoxon signed rank test
+### One-way ANOVA
+**unpaired**
+
+**paired**
+
 ### Kruskal-Wallis Test
+### Friedman test
+### Multifactorial ANOVA
 
 ## Post-hoc analysis
 ### Dunn's Test

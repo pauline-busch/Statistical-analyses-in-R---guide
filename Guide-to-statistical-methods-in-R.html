@@ -400,7 +400,16 @@ tree</a></li>
 </ul></li>
 <li><a href="#statistical-methods" id="toc-statistical-methods">Statistical methods</a>
 <ul>
+<li><a href="#students-t-test" id="toc-students-t-test">Student’s
+t-Test</a></li>
+<li><a href="#mann-whitney-u-test" id="toc-mann-whitney-u-test">Mann-Whitney-U test</a></li>
+<li><a href="#wilcoxon-signed-rank-test" id="toc-wilcoxon-signed-rank-test">Wilcoxon signed rank test</a></li>
+<li><a href="#one-way-anova" id="toc-one-way-anova">One-way
+ANOVA</a></li>
 <li><a href="#kruskal-wallis-test" id="toc-kruskal-wallis-test">Kruskal-Wallis Test</a></li>
+<li><a href="#friedman-test" id="toc-friedman-test">Friedman
+test</a></li>
+<li><a href="#multifactorial-anova" id="toc-multifactorial-anova">Multifactorial ANOVA</a></li>
 </ul></li>
 <li><a href="#post-hoc-analysis" id="toc-post-hoc-analysis">Post-hoc
 analysis</a>
@@ -410,11 +419,12 @@ analysis</a>
 </ul>
 </div>
 
-<p>Note: For demonstration purposes I am using the a package with 19
-medical datasets for teaching reproducible medical research with R. The
-package is called “medicaldata” and needs to be installed if you would
-like to reproduce the results shown in this document in your
-R-script.</p>
+<p>Note: For demonstration purposes I am using different datasets
+provided by R. One of the datasets is not included in base R and is from
+a package with 19 medical datasets for teaching reproducible medical
+research with R. The package is called “medicaldata” and needs to be
+installed if you would like to reproduce the results shown in this
+document in your R-script.</p>
 <div id="install-ggstatsplot" class="section level2">
 <h2>Install ggstatsplot</h2>
 <p>If not done already install the package called ggstatsplot. For this
@@ -554,8 +564,37 @@ asks from you).</p>
 </div>
 <div id="statistical-methods" class="section level2">
 <h2>Statistical methods</h2>
+<div id="students-t-test" class="section level3">
+<h3>Student’s t-Test</h3>
+<p><strong>Unpaired t-test</strong> (weight of soybean fed chicken
+vs. meatmeal fed chicken)</p>
+<pre class="r"><code>chicken &lt;- chickwts
+grouped_ch &lt;- split(chicken$weight, chicken$feed)
+T.test_unpaired &lt;- t.test(grouped_ch[[&quot;meatmeal&quot;]], grouped_ch[[&quot;soybean&quot;]])</code></pre>
+<p><strong>Paired t-test</strong> (sleep debt of 10 individuals with
+vs. without drug)</p>
+<pre class="r"><code>sleep_ID &lt;- reshape(sleep, direction = &quot;wide&quot;, idvar = &quot;ID&quot;, timevar = &quot;group&quot;)
+T.Test_paired &lt;- t.test(sleep_ID$extra.1, sleep_ID$extra.2, paired = TRUE)</code></pre>
+</div>
+<div id="mann-whitney-u-test" class="section level3">
+<h3>Mann-Whitney-U test</h3>
+</div>
+<div id="wilcoxon-signed-rank-test" class="section level3">
+<h3>Wilcoxon signed rank test</h3>
+</div>
+<div id="one-way-anova" class="section level3">
+<h3>One-way ANOVA</h3>
+<p><strong>unpaired</strong></p>
+<p><strong>paired</strong></p>
+</div>
 <div id="kruskal-wallis-test" class="section level3">
 <h3>Kruskal-Wallis Test</h3>
+</div>
+<div id="friedman-test" class="section level3">
+<h3>Friedman test</h3>
+</div>
+<div id="multifactorial-anova" class="section level3">
+<h3>Multifactorial ANOVA</h3>
 </div>
 </div>
 <div id="post-hoc-analysis" class="section level2">
